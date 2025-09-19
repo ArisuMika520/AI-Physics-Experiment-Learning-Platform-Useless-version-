@@ -1,0 +1,124 @@
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载题目中...</text>
+  </view>
+
+  <!-- 错误提示 -->
+  <view wx:if="{{error}}" class="error">
+    <text>{{error}}</text>
+    <button bindtap="loadQuestions">重新加载</button>
+  </view>
+
+  <!-- 答题界面 -->
+  <view wx:if="{{!loading && !error && !showResult}}" class="quiz-container">
+    <!-- 题目进度 -->
+    <view class="progress">
+      <text>第 {{currentQuestionIndex + 1}}/{{questions.length}} 题 ({{questions[currentQuestionIndex].type}}题)</text>
+    </view>
+
+    <!-- 题目内容 -->
+    <view class="question-card">
+      <text class="question-text">{{questions[currentQuestionIndex]['大题题干']}}</text>
+
+      <!-- 选择题 -->
+      <view wx:if="{{questions[currentQuestionIndex].type === '选择'}}" class="options">
+        <block wx:for="{{['A', 'B', 'C', 'D']}}" wx:for-item="optionKey" wx:key="optionKey">
+          <view
+            wx:if="{{questions[currentQuestionIndex]['选项' + optionKey]}}"
+            class="option-item {{userAnswers[currentQuestionIndex] === optionKey ? 'selected' : ''}}"
+            bindtap="selectAnswer"
+            data-index="{{optionKey}}"
+          >
+            <text>{{optionKey}}. {{questions[currentQuestionIndex]['选项' + optionKey]}}</text>
+          </view>
+        </block>
+      </view>
+
+      <!-- 填空题 -->
+      <view wx:if="{{questions[currentQuestionIndex].type === '填空'}}">
+        <textarea
+          class="text-input"
+          placeholder="请输入你的答案"
+          value="{{userAnswers[currentQuestionIndex]}}"
+          bindinput="handleTextInput"
+        ></textarea>
+      </view>
+
+      <!-- 简答题 -->
+      <view wx:if="{{questions[currentQuestionIndex].type === '简答'}}">
+        <image
+          wx:if="{{questions[currentQuestionIndex].image}}"
+          src="{{questions[currentQuestionIndex].image}}"
+          class="question-image"
+          mode="widthFix"
+        ></image>
+        <textarea
+          class="text-input"
+          placeholder="请输入你的答案"
+          value="{{userAnswers[currentQuestionIndex]}}"
+          bindinput="handleTextInput"
+        ></textarea>
+      </view>
+    </view>
+
+    <!-- 导航按钮 -->
+    <view class="navigation">
+      <button 
+        class="nav-btn prev" 
+        bindtap="prevQuestion"
+        disabled="{{currentQuestionIndex === 0}}"
+      >
+        上一题
+      </button>
+      
+      <button 
+        class="nav-btn next" 
+        bindtap="nextQuestion"
+        disabled="{{currentQuestionIndex === questions.length - 1}}"
+      >
+        下一题
+      </button>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button 
+        class="submit-btn" 
+        bindtap="submitQuiz"
+      >
+        提交答案
+      </button>
+    </view>
+  </view>
+
+  <!-- 结果界面 -->
+  <view wx:if="{{showResult}}" class="result-container">
+    <view class="result-card">
+      <text class="result-title">答题结果</text>
+      
+      <view class="score">
+        <text class="score-text">得分: {{quizResult.score}}/{{quizResult.total}}</text>
+      </view>
+
+      <view class="analysis">
+        <text class="analysis-title">分析报告:</text>
+        <text class="analysis-content">{{quizResult.analysis}}</text>
+      </view>
+
+      <view class="result-actions">
+        <button class="action-btn restart" bindtap="restartQuiz">
+          重新答题
+        </button>
+        
+        <button 
+          class="action-btn redo" 
+          bindtap="redoWrongQuestions"
+          disabled="{{quizResult.wrongQuestions.length === 0}}"
+        >
+          只做错题
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

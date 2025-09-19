@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/experiment/experiment",
+    "pages/experiment-list/experiment-list",
+    "pages/quiz/quiz"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "物理实验Test",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents"
+}

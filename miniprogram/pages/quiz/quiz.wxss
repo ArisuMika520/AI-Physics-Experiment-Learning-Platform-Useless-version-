@@ -1,0 +1,239 @@
+.question-image {
+  width: 100%;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+}
+
+.text-input {
+  width: 100%;
+  height: 200rpx;
+  border: 2rpx solid #e8e8e8;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 加载状态 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
+  font-size: 32rpx;
+  color: #666;
+}
+
+/* 错误提示 */
+.error {
+  text-align: center;
+  padding: 40rpx;
+  color: #ff4d4f;
+}
+
+.error button {
+  margin-top: 20rpx;
+  background-color: #1890ff;
+  color: white;
+}
+
+/* 答题容器 */
+.quiz-container {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 进度显示 */
+.progress {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 32rpx;
+}
+
+/* 题目卡片 */
+.question-card {
+  margin-bottom: 40rpx;
+}
+
+.question-text {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 32rpx;
+  display: block;
+}
+
+/* 选项样式 */
+.options {
+  margin-top: 24rpx;
+}
+
+.option-item {
+  padding: 24rpx 32rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx solid #e8e8e8;
+  border-radius: 12rpx;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.option-item.selected {
+  border-color: #1890ff;
+  background-color: #e6f7ff;
+}
+
+.option-item:active {
+  transform: scale(0.98);
+}
+
+/* 导航按钮 */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 32rpx 0;
+}
+
+.nav-btn {
+  flex: 1;
+  margin: 0 16rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+}
+
+.nav-btn.prev {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.nav-btn.next {
+  background-color: #1890ff;
+  color: white;
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+}
+
+/* 提交按钮 */
+.submit-section {
+  margin-top: 40rpx;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(135deg, #1890ff, #096dd9);
+  color: white;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.submit-btn:disabled {
+  background: #d9d9d9;
+  color: #bfbfbf;
+}
+
+/* 结果容器 */
+.result-container {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  margin-top: 20rpx;
+}
+
+.result-card {
+  text-align: center;
+}
+
+.result-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 32rpx;
+  display: block;
+}
+
+/* 得分显示 */
+.score {
+  margin-bottom: 40rpx;
+}
+
+.score-text {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1890ff;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.percentage {
+  font-size: 32rpx;
+  color: #666;
+  display: block;
+}
+
+/* 分析报告 */
+.analysis {
+  margin-bottom: 40rpx;
+  text-align: left;
+}
+
+.analysis-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.analysis-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  display: block;
+  white-space: pre-wrap;
+}
+
+/* 结果操作按钮 */
+.result-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.action-btn.restart {
+  background-color: #1890ff;
+  color: white;
+}
+
+.action-btn.redo {
+  background-color: #52c41a;
+  color: white;
+}
+
+.action-btn:disabled {
+  background-color: #d9d9d9;
+  color: #bfbfbf;
+}

@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="login-form">
+    <text class="login-title">Login</text>
+    <input class="login-input" placeholder="请输入用户名" bindinput="handleUsernameInput" value="{{username}}" />
+    <input class="login-input" type="password" placeholder="请输入密码" bindinput="handlePasswordInput" value="{{password}}" />
+    <button class="login-btn" bindtap="handleLogin">Login</button>
+    <view class="or-separator">---- or ----</view>
+    <button class="auth-btn" bindtap="handleCJLULogin">中国计量大学统一身份认证</button>
+  </view>
+</view>
+<custom-alert id="custom-alert" title="登录成功"></custom-alert>

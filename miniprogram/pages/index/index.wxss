@@ -1,0 +1,180 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fa;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.container {
+  padding: 32rpx;
+}
+
+/* 页面头部样式 */
+.header {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+/* 实验网格布局 */
+.experiment-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* 实验卡片样式 */
+.experiment-card {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.experiment-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 图标区域 */
+.card-icon {
+  width: 96rpx;
+  height: 96rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.icon-emoji {
+  font-size: 48rpx;
+  filter: grayscale(0);
+}
+
+/* 内容区域 */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.card-description {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.4;
+  margin-bottom: 16rpx;
+}
+
+/* 元信息区域 */
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.difficulty {
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+}
+
+.difficulty-easy {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.difficulty-medium {
+  background: #fff7e6;
+  color: #faad14;
+}
+
+.difficulty-hard {
+  background: #fff2f0;
+  color: #f5222d;
+}
+
+.difficulty-text {
+  font-weight: 500;
+}
+
+.duration {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* 箭头指示器 */
+.card-arrow {
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.arrow-icon {
+  font-size: 32rpx;
+  color: #cccccc;
+  font-weight: bold;
+}
+
+/* 底部区域 */
+.footer {
+  margin-top: 48rpx;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 响应式设计 */
+@media (max-width: 350px) {
+  .card-icon {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 16rpx;
+  }
+  
+  .icon-emoji {
+    font-size: 40rpx;
+  }
+  
+  .card-title {
+    font-size: 28rpx;
+  }
+  
+  .card-description {
+    font-size: 22rpx;
+  }
+}

@@ -1,0 +1,79 @@
+<!--experiment-list.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <!-- 页面标题和简介 -->
+    <view class="header">
+      <text class="title">其他实验</text>
+      <text class="subtitle">选择您感兴趣的物理实验进行学习</text>
+    </view>
+
+    <!-- 实验分类 -->
+    <view class="category-tabs">
+      <view 
+        class="category-tab {{currentCategory === item.id ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="id"
+        bindtap="switchCategory"
+        data-category="{{item.id}}"
+      >
+        <text class="category-icon">{{item.icon}}</text>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 实验列表 -->
+    <view class="experiment-list">
+      <view 
+        class="experiment-item"
+        wx:for="{{filteredExperiments}}"
+        wx:key="id"
+        bindtap="navigateToExperiment"
+        data-id="{{item.id}}"
+        data-title="{{item.title}}"
+      >
+        <!-- 实验图标 -->
+        <view class="item-icon">
+          <text class="icon-emoji">{{item.icon}}</text>
+        </view>
+        
+        <!-- 实验信息 -->
+        <view class="item-content">
+          <text class="item-title">{{item.title}}</text>
+          <text class="item-description">{{item.description}}</text>
+          
+          <!-- 实验标签 -->
+          <view class="item-tags">
+            <view class="tag difficulty-{{item.difficulty}}">
+              <text class="tag-text">
+                {{item.difficulty === 'easy' ? '简单' : item.difficulty === 'medium' ? '中等' : '困难'}}
+              </text>
+            </view>
+            <view class="tag duration">
+              <text class="tag-text">{{item.duration}}</text>
+            </view>
+            <view class="tag category">
+              <text class="tag-text">{{item.category}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 箭头指示器 -->
+        <view class="item-arrow">
+          <text class="arrow-icon">></text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredExperiments.length === 0}}">
+      <text class="empty-icon">🔍</text>
+      <text class="empty-text">暂无相关实验</text>
+      <text class="empty-desc">请尝试切换其他分类查看</text>
+    </view>
+
+    <!-- 底部提示 -->
+    <view class="footer">
+      <text class="footer-text">点击实验卡片开始学习</text>
+    </view>
+  </view>
+</scroll-view>

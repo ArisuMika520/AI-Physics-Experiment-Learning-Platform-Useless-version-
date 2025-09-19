@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "enhanced-video": "../../components/enhanced-video/enhanced-video"
+  },
+  "navigationBarTitleText": "物理实验"
+}

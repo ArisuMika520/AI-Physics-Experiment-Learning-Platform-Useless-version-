@@ -1,0 +1,357 @@
+<!--experiment.wxml-->
+<view class="container">
+  <!-- 导航头部 -->
+  <view class="nav-header">
+    <view class="nav-container">
+      <!-- 滑动指示器 -->
+      <view 
+        class="nav-indicator nav-indicator-{{currentStep}}"
+        wx:if="{{currentStep}}"
+      ></view>
+      
+      <!-- 分栏按钮 -->
+      <view class="nav-tabs">
+        <view 
+          class="nav-tab {{currentStep === 'learning' ? 'active' : ''}}"
+          bindtap="switchStep"
+          data-step="learning"
+        >
+          <view class="nav-tab-content">
+            <text class="nav-tab-icon">🎓</text>
+            <text class="nav-tab-text">学习</text>
+          </view>
+        </view>
+        
+        <!-- 分割线 -->
+        <view class="nav-divider">
+          <view class="divider-line"></view>
+        </view>
+        
+        <view 
+          class="nav-tab {{currentStep === 'ai-chat' ? 'active' : ''}}"
+          bindtap="switchStep"
+          data-step="ai-chat"
+        >
+          <view class="nav-tab-content">
+            <text class="nav-tab-icon">🤖</text>
+            <text class="nav-tab-text">AI问答</text>
+          </view>
+        </view>
+        
+        <!-- 分割线 -->
+        <view class="nav-divider">
+          <view class="divider-line"></view>
+        </view>
+        
+        <view 
+          class="nav-tab {{currentStep === 'simulation' ? 'active' : ''}}"
+          bindtap="switchStep"
+          data-step="simulation"
+        >
+          <view class="nav-tab-content">
+            <text class="nav-tab-icon">🎮</text>
+            <text class="nav-tab-text">仿真实验</text>
+          </view>
+        </view>
+        
+        <!-- 分割线 -->
+        <view class="nav-divider">
+          <view class="divider-line"></view>
+        </view>
+        
+        <view 
+          class="nav-tab {{currentStep === 'upload' ? 'active' : ''}}"
+          bindtap="switchStep"
+          data-step="upload"
+        >
+          <view class="nav-tab-content">
+            <text class="nav-tab-icon">📤</text>
+            <text class="nav-tab-text">上传作业</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <scroll-view class="content" scroll-y>
+    
+    <!-- 学习内容 -->
+    <view class="section" wx:if="{{currentStep === 'learning'}}">
+      <view class="section-header">
+        <text class="section-title">{{experimentTitle}}学习</text>
+        <text class="section-description" wx:if="{{experimentDescription}}">{{experimentDescription}}</text>
+      </view>
+      
+      <view class="learning-content">
+        <!-- 操作视频 -->
+        <view class="video-section">
+          <text class="subtitle">📹 操作视频</text>
+          <view class="video-container">
+            <video 
+              class="operation-video"
+              src="{{videoSrc || ''}}"
+              poster="/images/video-poster.jpg"
+              controls
+              show-center-play-btn
+              object-fit="contain"
+              bindplay="onVideoPlay"
+              binderror="onVideoError"
+            >
+            </video>
+            <text class="video-description">{{experimentTitle}}操作演示</text>
+          </view>
+        </view>
+        
+        <!-- 注意事项PPT -->
+        <view class="ppt-section">
+          <text class="subtitle">📋 实验指导PPT</text>
+          
+          <!-- PPT文件操作区域 -->
+          <view class="ppt-file-section">
+            <view class="ppt-file-card">
+              <view class="ppt-file-info">
+                <view class="ppt-file-icon">📄</view>
+                <view class="ppt-file-details">
+                  <text class="ppt-file-name">{{experimentTitle}}指导PPT</text>
+                  <text class="ppt-file-size">2.5MB</text>
+                  <text class="ppt-file-format">PowerPoint演示文稿</text>
+                </view>
+              </view>
+              <view class="ppt-file-actions">
+                <button class="ppt-btn ppt-preview-btn" bindtap="previewPPT">
+                  <text class="btn-text">预览</text>
+                </button>
+                <button class="ppt-btn ppt-download-btn" bindtap="downloadPPT">
+                  <text class="btn-text">下载</text>
+                </button>
+              </view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- AI智能问答 -->
+        
+        <!-- 预习题 -->
+        <view class="preview-questions-section">
+          <text class="subtitle">📚 预习题</text>
+          <view class="question-list">
+            <block wx:for="{{previewQuestions}}" wx:for-item="question" wx:for-index="index" wx:key="id">
+              <view class="question-item">
+                <text class="question-title">{{question.id}}. {{question.title}}</text>
+                <textarea
+                  class="answer-input"
+                  placeholder="请输入你的答案..."
+                  value="{{question.answer}}"
+                  data-id="{{question.id}}"
+                  bindinput="handlePreviewAnswerInput"
+                  auto-height
+                ></textarea>
+              </view>
+            </block>
+          </view>
+          <button class="submit-preview-btn" bindtap="submitPreviewAnswers">提交预习</button>
+        </view>
+
+      </view>
+    </view>
+
+    <!-- AI问答 -->
+    <view class="section" wx:if="{{currentStep === 'ai-chat'}}">
+      <view class="section-header">
+        <text class="section-title">AI智能问答</text>
+      </view>
+      
+      <view class="section-content">
+        <!-- 聊天对话区域 -->
+        <view class="chat-container">
+          <scroll-view 
+            class="chat-messages" 
+            scroll-y
+            scroll-top="{{scrollTop}}"
+            scroll-into-view="{{scrollIntoView}}"
+          >
+            <view 
+              class="message-item {{item.type}}"
+              wx:for="{{chatMessages}}"
+              wx:key="index"
+              id="msg-{{index}}"
+            >
+              <view class="message-avatar">
+                <text class="avatar-icon">{{item.type === 'user' ? '👤' : '🤖'}}</text>
+              </view>
+              <view class="message-content">
+                <view class="message-bubble">
+                  <text class="message-text" wx:if="{{item.type === 'user'}}">{{item.content}}</text>
+                  <view class="ai-message" wx:if="{{item.type === 'ai'}}">
+                    <rich-text nodes="{{item.formattedContent}}"></rich-text>
+                  </view>
+                </view>
+                <text class="message-time">{{item.time}}</text>
+              </view>
+            </view>
+            
+            <!-- 加载状态 -->
+            <view class="message-item ai loading" wx:if="{{isLoading}}">
+              <view class="message-avatar">
+                <text class="avatar-icon">🤖</text>
+              </view>
+              <view class="message-content">
+                <view class="message-bubble">
+                  <view class="loading-dots">
+                    <text class="dot">●</text>
+                    <text class="dot">●</text>
+                    <text class="dot">●</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+          
+          <!-- 输入区域 -->
+          <view class="chat-input-area">
+            <view class="input-container">
+              <textarea
+                class="chat-input"
+                placeholder="输入消息..."
+                value="{{inputText}}"
+                bindinput="onInputChange"
+                maxlength="500"
+                auto-height
+                show-confirm-bar="{{false}}"
+              ></textarea>
+            </view>
+            <button 
+              class="send-btn {{inputText.trim() ? 'active' : ''}}"
+              bindtap="sendMessage"
+              disabled="{{false}}"
+            >
+              <text class="send-icon">▶</text>
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 仿真实验 -->
+    <view class="section" wx:if="{{currentStep === 'simulation'}}">
+      <view class="section-header">
+        <text class="section-title">仿真实验</text>
+      </view>
+      
+      <view class="simulation-content">
+        <view class="simulation-intro">
+          <text class="intro-text">通过虚拟仿真实验，您可以：</text>
+          <text class="intro-item">• 模拟实验连接和测量过程</text>
+          <text class="intro-item">• 观察实验现象和数据变化</text>
+          <text class="intro-item">• 练习实验操作步骤</text>
+          <text class="intro-item">• 验证理论知识</text>
+        </view>
+        
+        <!-- 仿真实验的操作演示 -->
+        <view class="demo-video-section">
+          <view class="demo-header">
+            <text class="demo-title">🎬 仿真实验的操作演示</text>
+            <text class="demo-subtitle">观看演示视频，了解实验操作流程</text>
+            <button class="reset-video-btn" bindtap="resetDemoVideo">
+              <text class="reset-icon">🔄</text>
+              <text class="reset-text">重置视频</text>
+            </button>
+          </view>
+          
+          <view class="demo-video-container">
+              <video style="width: 100%; height: 422rpx;" src="{{demoVideoSrc}}" controls show-fullscreen-btn="{{false}}" binderror="videoErrorCallback"></video>
+            </view>
+        </view>
+        
+        <view class="simulation-actions">
+          <button class="simulation-btn primary" bindtap="startSimulation">
+            <text class="btn-icon">🚀</text>
+            <text class="btn-text">开始仿真实验</text>
+          </button>
+          
+          <button class="simulation-btn secondary" bindtap="viewTutorial">
+            <text class="btn-icon">📖</text>
+            <text class="btn-text">查看操作指南</text>
+          </button>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 上传作业 -->
+    <view class="section" wx:if="{{currentStep === 'upload'}}">
+      <view class="section-header">
+        <text class="section-title">上传作业</text>
+      </view>
+      
+      <view class="upload-content">
+        <view class="upload-tips">
+          <text class="tips-title">📝 作业要求：</text>
+          <text class="tips-text">1. 完整的实验数据记录表</text>
+          <text class="tips-text">2. 伏安特性曲线图（手绘或软件绘制）</text>
+          <text class="tips-text">3. 实验结果分析与讨论</text>
+          <text class="tips-text">4. 支持格式：PDF、Word文档、图片</text>
+        </view>
+        
+        <view class="upload-area">
+          <view class="upload-box" bindtap="chooseImageFile">
+            <view class="upload-icon">🖼️</view>
+            <text class="upload-text">上传图片</text>
+            <text class="upload-limit">支持jpg, png</text>
+          </view>
+          <view class="upload-box" bindtap="chooseDocumentFile">
+            <view class="upload-icon">📄</view>
+            <text class="upload-text">上传文档</text>
+            <text class="upload-limit">从聊天记录选择</text>
+          </view>
+        </view>
+        
+        <view class="uploaded-files" wx:if="{{uploadedFiles.length > 0}}">
+          <text class="files-title">已上传文件：</text>
+          <view 
+            class="file-item" 
+            wx:for="{{uploadedFiles}}" 
+            wx:key="index"
+          >
+            <view class="file-info">
+              <text class="file-name">{{item.name}}</text>
+              <text class="file-size">{{item.size}}</text>
+            </view>
+            <view class="file-actions">
+              <text class="file-status {{item.status}}">{{item.statusText}}</text>
+              <text class="file-delete" bindtap="deleteFile" data-index="{{index}}">删除</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="quiz-section">
+          <button 
+            class="quiz-btn"
+            bindtap="goToQuiz"
+          >
+            🧠 进入答题页面
+          </button>
+        </view>
+        
+        <view class="submit-section">
+          <button 
+            class="submit-btn"
+            bindtap="submitHomework"
+            disabled="{{uploadedFiles.length === 0}}"
+          >
+            提交作业
+          </button>
+        </view>
+      </view>
+    </view>
+
+  </scroll-view>
+
+  <!-- 底部操作栏 -->
+  <view class="footer">
+    <view class="back-home">
+      <button class="btn-back" bindtap="goBack">返回首页</button>
+    </view>
+  </view>
+</view>

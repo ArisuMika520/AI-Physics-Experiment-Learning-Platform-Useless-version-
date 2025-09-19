@@ -1,0 +1,117 @@
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes form-animation {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-animation 8s ease infinite;
+}
+
+.login-form {
+  width: 80%;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: form-animation 0.8s ease-out forwards;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  width: 100%;
+  text-align: center;
+}
+
+.login-input {
+  height: 45px;
+  line-height: 45px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 0 15px;
+  margin-bottom: 20px;
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-input:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.login-btn {
+  width: 100%;
+  height: 45px;
+  line-height: 30px;
+  background: linear-gradient(90deg, #6a82fb, #9a7dff);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 15px 0 rgba(154, 125, 255, 0.5);
+}
+
+.or-separator {
+  color: #ccc;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.auth-btn {
+  background-color:rgb(192, 54, 178); /* A more subtle gray */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 1px; /* Add horizontal padding */
+  width: auto; /* Let width be determined by content */
+  font-size: 14px;
+  white-space: nowrap; /* Prevent text wrapping */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.auth-btn:active {
+  background-color: #5a6268; /* Darker gray for active state */
+  transform: scale(0.98);
+}

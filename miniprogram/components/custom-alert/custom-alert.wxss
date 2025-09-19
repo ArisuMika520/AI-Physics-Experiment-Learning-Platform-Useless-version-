@@ -1,0 +1,79 @@
+/* components/custom-alert/custom-alert.wxss */
+.alert-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.alert-container {
+  background-color: white;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popup 0.3s ease-out;
+}
+
+.alert-title {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.checkmark-stem {
+  position: absolute;
+  width: 4px;
+  height: 40px;
+  background-color: #4CAF50;
+  left: 38px;
+  top: 20px;
+  transform: rotate(45deg);
+  animation: stem-anim 0.3s ease-out;
+}
+
+.checkmark-kick {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background-color: #4CAF50;
+  left: 20px;
+  top: 35px;
+  transform: rotate(135deg);
+  animation: kick-anim 0.4s ease-out 0.2s;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes stem-anim {
+  from { height: 0; }
+  to { height: 45px; }
+}
+
+@keyframes kick-anim {
+  from { height: 0; }
+  to { height: 20px; }
+}

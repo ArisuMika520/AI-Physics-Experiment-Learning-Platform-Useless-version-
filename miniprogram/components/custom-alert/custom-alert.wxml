@@ -1,0 +1,9 @@
+<view class="alert-mask" wx:if="{{visible}}">
+  <view class="alert-container">
+    <view class="success-icon">
+      <view class="checkmark-stem"></view>
+      <view class="checkmark-kick"></view>
+    </view>
+    <text class="alert-title">{{title}}</text>
+  </view>
+</view>

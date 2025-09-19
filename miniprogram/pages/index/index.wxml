@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <!-- 页面标题和简介 -->
+    <view class="header">
+      <text class="title">实验平台</text>
+      <text class="subtitle">选择您要学习的物理实验模块</text>
+    </view>
+
+    <!-- 实验模块网格 -->
+    <view class="experiment-grid">
+      <view 
+        class="experiment-card" 
+        wx:for="{{experimentModules}}" 
+        wx:key="id"
+        bindtap="navigateToExperiment"
+        data-id="{{item.id}}"
+        data-title="{{item.title}}"
+      >
+        <!-- 实验图标 -->
+        <view class="card-icon">
+          <text class="icon-emoji">{{item.icon}}</text>
+        </view>
+        
+        <!-- 实验信息 -->
+        <view class="card-content">
+          <text class="card-title">{{item.title}}</text>
+          <text class="card-description">{{item.description}}</text>
+          
+          <!-- 难度和时长信息 -->
+          <view class="card-meta">
+            <view class="difficulty difficulty-{{item.difficulty}}">
+              <text class="difficulty-text">
+                {{item.difficulty === 'easy' ? '简单' : item.difficulty === 'medium' ? '中等' : '困难'}}
+              </text>
+            </view>
+            <text class="duration">{{item.duration}}</text>
+          </view>
+        </view>
+
+        <!-- 箭头指示器 -->
+        <view class="card-arrow">
+          <text class="arrow-icon">></text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部提示 -->
+    <view class="footer">
+      <text class="footer-text">点击卡片开始实验学习</text>
+    </view>
+  </view>
+</scroll-view>

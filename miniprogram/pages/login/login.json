@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "custom-alert": "/components/custom-alert/custom-alert"
+  }
+}

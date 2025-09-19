@@ -1,0 +1,10 @@
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 422rpx;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+}

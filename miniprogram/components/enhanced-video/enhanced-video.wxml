@@ -1,0 +1,9 @@
+<view class="video-wrapper">
+  <video
+    id="enhancedVideo"
+    class="video-player"
+    src="{{src}}"
+    controls
+    show-center-play-btn
+  ></video>
+</view>
