@@ -2,9 +2,9 @@ export const CozeAPIConfig = {
   // API基础配置
   baseURL: 'https://api.coze.cn/v3/chat',
   
-  authorization: 'Bearer pat_NxDoMMDSsTunmIF9QCCT2sO6KddVvpPwJyuZ7fEv2qA0hDTYZg5o9kO57Supz9eH',
+  authorization: 'Bearer Your API',
   
-  botId: '7543573567435341839',
+  botId: 'Your ID',
   
   userId: '123',
   
