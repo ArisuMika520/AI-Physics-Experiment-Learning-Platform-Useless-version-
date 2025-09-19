@@ -11,7 +11,7 @@
 
 核心技术栈包括：
 - 前端：微信小程序原生框架（wxml+wxss） + TypeScript + WeUI组件库
-- 后端：Node.js + Express.js + Prisma ORM + PostgreSQL + PM2 + Cloudflare Tunnel + S3 Object Storage
+- 后端：Node.js + Express.js + Prisma ORM + PostgreSQL + PM2 + Cloudflare Tunnel + S3 Object Storage(后期接入)
  
 ---
 
